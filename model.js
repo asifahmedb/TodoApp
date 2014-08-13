@@ -1,21 +1,54 @@
-// addItem
-// delete Item
-//update Item
-//get All
-//get Item by Id
+/*(function(app) {
+	
+	app.Model = {
+		order: {
+			id: 123,
+			name: "aconex",
+			type: "Construction",
+			value: "acx"
+		}
+	}
 
-(function(){
+})(app = window.app || {});*/
 
-window.todo = window.todo || {};
+app.model = (function() {
+	var _todos = [];
+	var _data = {
+		id: 123,
+		name: "aconex",
+		type: "Construction",
+		value: "acx"
+	};
 
-var _items =[];
 
-  window.todo.Model = {
-  	addItem : function(item){
-     _items.push(item);
-     window.todo.Controller.reload();
-  	}
+	var addItem = function(item) {
+		if (item === "") {
+			alert('Item Cannot be empty');
+			return;
+		}
+		_todos.push(item);
+		console.log("Items : " + _todos);
+		app.controller.display(item);
+	};
 
-  }
+	var deleteItem = function(item) {
+		console.log("delete Item");
+	};
+
+	var updateItem = function(item) {
+		console.log("update Item");
+	};
+
+	var getTodos = function getTodos() {
+		return _todos;
+	};
+
+	return {
+		data: _data,
+		addItem: addItem,
+		deleteItem: deleteItem,
+		updateItem: updateItem,
+		listTodo: getTodos
+	};
 
 })();
